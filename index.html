@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Tonks!</title>
+    <meta property="og:site_name" content="Tonks!"/>
+    <meta property="og:description" content="Classic NES game recreation.">
+    <meta property="og:title" content="Tonks!">
+    <meta property="og:url" content="http://ups7r4k7.webd.pl/maciej/tonks">
+    <meta property="og:image" content="http://ups7r4k7.webd.pl/maciej/tonks/fb_img.png">
+    
+    <link rel="stylesheet" href="node_modules/reset-css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="assets/style.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <!-- Sprites texture -->
+    <img style="display: none" src="assets/bricks.png" id="texture" />
+    <div class="app">
+        <div class="app__screens">
+            <!-- Main Menu Screen -->
+            <div class="app__screen" id="screen--main-menu">
+                <div class="scores">
+                    <span class="score score--player">
+                        I- <span class="score__value" data-element="score--player1">00</span>
+                    </span>
+                    <span class="score score--hi">
+                        HI-&nbsp;
+                        <span class="score__value"  data-element="score--hi">20000</span>
+                    </span>
+        
+                    <span class="score score--player" data-element="score--player2">
+                        II- <span class="score__value">00</span>
+                    </span>
+                </div>
+                
+                <div class="players-selection players-selection--one" data-element="player-select">
+                    <div class="players-selection__selector">
+                        <img data-element="player-selector" src="assets/menu_selector.png" />
+                    </div>
+                    <div class="player-selection__options">
+                        <span>1 PLAYER</span>
+                        <span>2 PLAYERS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level Selection Screen -->
+            <div class="app__screen level-selection" id="screen--level-selection">
+                <div class="level-selection__upper-rect"></div>
+                <span class="level-selection__value" style="display: none">
+                    STAGE <span data-element="level-no">1</span>
+                </span>
+                <div class="level-selection__lower-rect"></div>
+            </div>
+
+            <!-- Game Screen -->
+            <div class="app__screen" id="screen--game">
+                <div class="game-screen">
+                    <canvas class="game-screen__canvas" width="416" height="416"></canvas>
+                    <div class="game-screen__side">
+                        <div class="game-screen__side__enemies" data-element="killed-enemies">
+                        </div>
+                        <div class="game-screen__side__player">
+                            IP
+                            <img src="assets/player_life.png" /><span data-element="p1-lives">0</span>
+                        </div>
+                        <div class="game-screen__side__player">
+                            IIP
+                            <img src="assets/player_life.png" /><span data-element="p2-lives">0</span>
+                        </div>
+                        <div class="game-screen__side__stage">
+                            <img src="assets/flag.png" />
+                            <span data-element="current-stage">0</span>
+                        </div>
+                    </div>
+                    <div class="game-screen__game-over" data-element="game-over">
+                        GAME<br/>
+                        OVER
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div class="app__screen" id="screen-results">
+                <div class="results-screen">
+                    <div class="results-screen__hi-score">
+                        <span class="results-screen__label">
+                            HI-SCORE
+                        </span>
+                        <span class="results-screen__value" data-element="score--hi">
+                            20000
+                        </span>
+                    </div>
+                    <div class="results-screen__stage">
+                        STAGE <span data-element="current-stage">0</span>
+                    </div>
+                    <table class="results-screen__table">
+                        <tr class="results-screen__table__player-result">
+                            <td colspan="2" class="results-screen__label">
+                                I-PLAYER
+                            </td>
+                            <td colspan="5">
+                            </td>
+                            <td colspan="2" class="results-screen__label">
+                                II-PLAYER
+                            </td>
+                        </tr>
+                        <tr class="results-screen__table__player-result">
+                            <td colspan="2" data-element="score--player1" class="results-screen__value">
+                                0
+                            </td>
+                            <td colspan="5">
+                            </td>
+                            <td colspan="2" data-element="score--player2" class="results-screen__value">
+                                0
+                            </td>
+                        </tr>
+                        <tr class="results-screen__table__data">
+                            <td data-element="enemy--score" data-enemy-type="basic" data-player="1">
+                                0
+                            </td>
+                            <td>
+                                PTS
+                            </td>
+                            <td data-element="enemy--count" data-enemy-type="basic" data-player="1">
+                                0
+                            </td>
+                            <td>
+                                <img src="assets/arrow_light.png" />
+                            </td>
+                            <td>
+                                <img src="assets/tank_basic.png" />
+                            </td>
+                            <td>
+                                <img src="assets/arrow_right.png" />
+                            </td>
+                            <td data-element="enemy--count" data-enemy-type="basic" data-player="2">
+                                0
+                            </td>
+                            <td data-element="enemy--score" data-enemy-type="basic" data-player="2">
+                                0
+                            </td>
+                            <td>
+                                PTS
+                            </td>
+                        </tr>
+                        <tr class="results-screen__table__data">
+                            <td data-element="enemy--score" data-enemy-type="fast" data-player="1">
+                                0
+                            </td>
+                            <td>
+                                PTS
+                            </td>
+                            <td data-element="enemy--count" data-enemy-type="fast" data-player="1">
+                                0
+                            </td>
+                            <td>
+                                <img src="assets/arrow_light.png" />
+                            </td>
+                            <td>
+                                <img src="assets/icon_fasttank.png" />
+                            </td>
+                            <td>
+                                <img src="assets/arrow_right.png" />
+                            </td>
+                            <td data-element="enemy--count" data-enemy-type="fast" data-player="2">
+                                0
+                            </td>
+                            <td data-element="enemy--score" data-enemy-type="fast" data-player="2">
+                                0
+                            </td>
+                            <td>
+                                PTS
+                            </td>
+                        </tr>
+                        <tr class="results-screen__table__data">
+                            <td data-element="enemy--score" data-enemy-type="power" data-player="1">
+                                0
+                            </td>
+                            <td>
+                                PTS
+                            </td>
+                            <td data-element="enemy--count" data-enemy-type="power" data-player="1">
+                                0
+                            </td>
+                            <td>
+                                <img src="assets/arrow_light.png" />
+                            </td>
+                            <td>
+                                <img src="assets/icon_powertank.png" />
+                            </td>
+                            <td>
+                                <img src="assets/arrow_right.png" />
+                            </td>
+                            <td data-element="enemy--count" data-enemy-type="power" data-player="2">
+                                0
+                            </td>
+                            <td data-element="enemy--score" data-enemy-type="power" data-player="2">
+                                0
+                            </td>
+                            <td>
+                                PTS
+                            </td>
+                        </tr>
+                        <tr class="results-screen__table__data">
+                            <td data-element="enemy--score" data-enemy-type="armor" data-player="1">
+                                0
+                            </td>
+                            <td>
+                                PTS
+                            </td>
+                            <td data-element="enemy--count" data-enemy-type="armor" data-player="1">
+                                0
+                            </td>
+                            <td>
+                                <img src="assets/arrow_light.png" />
+                            </td>
+                            <td>
+                                <img src="assets/icon_armortank.png" />
+                            </td>
+                            <td>
+                                <img src="assets/arrow_right.png" />
+                            </td>
+                            <td data-element="enemy--count" data-enemy-type="armor" data-player="2">
+                                0
+                            </td>
+                            <td data-element="enemy--score" data-enemy-type="armor" data-player="2">
+                                0
+                            </td>
+                            <td>
+                                PTS
+                            </td>
+                        </tr>
+                        <tr class="results-screen__table__summary">
+                            <td colspan="2">
+                                TOTAL
+                            </td>
+                            <td data-element="p1--count">
+                                0
+                            </td>
+                            <td colspan="3">
+                            </td>
+                            <td data-element="p2--count">
+                                0
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Controls Box -->
+        <div class="app__controls controls">
+            <h3 class="controls__title">
+                Controls
+            </h3>
+            <p class="controls__column">
+                <span class="controls__column__title">
+                    Player 1
+                </span>
+                <span class="controls__column__value">
+                    W,S,A,D - Move
+                </span>
+                <span class="controls__column__value">
+                    L Shift - Shoot / Select
+                </span>
+            </p>
+            <p class="controls__column">
+                <span class="controls__column__title">
+                    Player 2
+                </span>
+                <span class="controls__column__value">
+                    Arrows - Move
+                </span>
+                <span class="controls__column__value">
+                    / - Shoot
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <script src="./src/app.ts"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+﻿body {
+    font-family: 'Press Start 2P', cursive;
+    color:#fff;
+    background-color:#000;
+    image-rendering: pixelated;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+}
+
+.app {
+    max-width: 516px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.app__controls {
+    margin-top: 2rem;
+}
+
+.controls {
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+}
+.controls__title {
+    flex: 1 1 100%;
+    text-align: center;
+    color: #ee0505;
+    margin-bottom: 1rem;
+}
+.controls__column {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    line-height: 1.5em;
+    font-size: 0.8rem;
+}
+.controls__column + .controls__column {
+    margin-left: auto;
+}
+.controls__column__title {
+    color: #f2aa00;
+}
+
+.app__screens {
+    position: relative;
+}
+
+.app__screens::after {
+    content: "";
+    display: block;
+    padding-bottom: calc(100% - 100px);
+}
+
+.app__screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    overflow: hidden;
+}
+
+.app__screen--active {
+    display: block;
+}
+
+/***************************/
+/*      SCREEN MAIN        */
+/***************************/
+/* Players Scores */
+.scores {
+    display: flex;
+    justify-content: space-between;
+}
+
+.score {
+    display: flex;
+    white-space: nowrap;
+}
+
+.score--player {
+    flex: 1 1 auto;
+}
+
+.score--hi {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.score__value {
+    margin-left: auto;
+}
+
+/*  Player Selection  */
+.players-selection {
+    display: flex;
+    position: relative;
+    top: calc(100% - 50px);
+    transform: translateY(-100%);
+    justify-content: center;
+}
+
+.players-selection__selector {
+    flex: 0 0 auto;
+    padding-right: 1rem;
+    position: relative;
+}
+
+.players-selection__selector img {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: relative;
+}
+
+.player-selection__options {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.player-selection__options > * {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.players-selection--one .players-selection__selector img {
+    top: 0;
+}
+
+.players-selection--two .players-selection__selector img {
+    top: 50%;
+}
+
+/***************************/
+/*  SCREEN LEVEL SELECT    */
+/***************************/
+.level-selection__upper-rect,
+.level-selection__lower-rect{
+    content: " ";
+    background-color: #808080;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    left: 0;
+    position: absolute;
+}
+
+.level-selection__upper-rect {
+    top: 0;
+}
+
+.level-selection__lower-rect {
+    bottom: 0;
+}
+
+.level-selection__value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: #000;
+}
+
+/***************************/
+/*      SCREEN GAME        */
+/***************************/
+.game-screen {
+    display: flex;
+    align-items: stretch;
+}
+
+.game-screen__canvas {
+    flex: 1 1 auto;
+}
+
+.game-screen__side {
+    background-color: #808080;
+    flex: 0 0 100px;
+    display: flex;
+    flex-direction: column;
+    color: #000;
+}
+
+.game-screen__side__enemies {
+    max-width: 2.4rem;
+    margin: 1rem auto auto auto;
+}
+
+.game-screen__side__enemies > img {
+    margin: 0.1rem;
+    width: 1rem;
+}
+
+.game-screen__side__player {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    line-height: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.game-screen__side__player img {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.25rem;
+}
+
+.game-screen__side__stage {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: right;
+    margin-bottom: 2rem;
+}
+
+.game-screen__side__stage img {
+    display: block;
+    width: 80%;
+}
+
+.game-screen__side__stage span {
+    margin-right: 10px;
+}
+
+.game-screen__game-over {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    color: #ee0505;
+    transform: translate(-50%, -50%);
+}
+
+/***************************/
+/*     SCREEN RESULTS      */
+/***************************/
+.results-screen {
+    display: flex;
+    flex-direction: column;
+}
+
+.results-screen__label {
+    color: #ee0505;
+}
+
+.results-screen__value {
+    color: #f2aa00;
+}
+
+.results-screen__hi-score,
+.results-screen__stage {
+    line-height: 2em;
+    text-align: center;
+}
+
+.results-screen__hi-score {
+    margin-top: 2rem;
+}
+
+.results-screen__table {
+    margin-top: auto;
+}
+
+.results-screen__table__player-result {
+    text-align: right;
+}
+
+.results-screen__table tr td {
+    vertical-align: middle;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: right;
+}
+
+.results-screen__table img {
+    width: 1rem;
+    height: 1rem;
+}
+
+.results-screen__table__data td:nth-child(5) img {
+    width: 2rem;
+    height: 2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.results-screen__table__data td:nth-child(4),
+.results-screen__table__data td:nth-child(6) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.results-screen__table__data td:nth-child(1),
+.results-screen__table__data td:nth-child(8) {
+    width: 10rem;
+}
+.results-screen__table__data td:nth-child(2),
+.results-screen__table__data td:nth-child(9) {
+    width: 3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.results-screen__table__data td:nth-child(3),
+.results-screen__table__data td:nth-child(7) {
+    width: 2rem;
+}
+.results-screen__table__summary td:nth-child(1) {
+    padding-right: 0.5rem;
+}
+.results-screen__table__summary td:nth-child(2),
+.results-screen__table__summary td:nth-child(3),
+.results-screen__table__summary td:nth-child(4) {
+    border-top: 2px solid #fff;
+}
+
+.results-screen__table:not(.results-screen__table--two-players) .results-screen__table__player-result td:nth-child(3),
+.results-screen__table:not(.results-screen__table--two-players) .results-screen__table__data td:nth-child(6),
+.results-screen__table:not(.results-screen__table--two-players) .results-screen__table__data td:nth-child(7),
+.results-screen__table:not(.results-screen__table--two-players) .results-screen__table__data td:nth-child(8),
+.results-screen__table:not(.results-screen__table--two-players) .results-screen__table__data td:nth-child(9),
+.results-screen__table:not(.results-screen__table--two-players) .results-screen__table__summary td:nth-child(4) {
+    visibility: hidden;
+}

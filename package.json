@@ -1,0 +1,23 @@
+{
+  "name": "tonks",
+  "version": "1.0.0",
+  "description": "Loose recration of Battle City NES game as a HTML5 Canvas app.",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.3.29",
+    "assets": "^3.0.1",
+    "jquery": "^3.3.1",
+    "reset-css": "^4.0.1",
+    "src": "^1.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.0",
+    "parcel-bundler": "^1.6.1",
+    "typescript": "^3.2.4"
+  },
+  "keywords": []
+}
