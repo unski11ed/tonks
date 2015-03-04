@@ -74,6 +74,26 @@
 /*      SCREEN MAIN        */
 /***************************/
 /* Players Scores */
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.main-menu__title {
+    margin-top: 50px;
+}
+
+.main-menu__players {
+    margin-top: auto;
+}
+
+.main-menu__footer {
+    margin-top: 50px;
+}
+
 .scores {
     display: flex;
     justify-content: space-between;
@@ -97,12 +117,14 @@
     margin-left: auto;
 }
 
+.main-menu__title img {
+    display: block;
+    width: 100%;
+}
+
 /*  Player Selection  */
 .players-selection {
     display: flex;
-    position: relative;
-    top: calc(100% - 50px);
-    transform: translateY(-100%);
     justify-content: center;
 }
 
