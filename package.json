@@ -1,7 +1,7 @@
 {
   "name": "tonks",
-  "version": "1.0.0",
-  "description": "Loose recration of Battle City NES game as a HTML5 Canvas app.",
+  "version": "0.1.0",
+  "description": "Simple recration of popular NES game as a HTML5 Canvas app.",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
